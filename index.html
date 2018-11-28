@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>My Web Page Of Wisdom</title>
+    <style type="text/css">
+        .full-page {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        .x-center-y-center-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .quote {
+            padding: 0.5em;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #336699;
+        }
+        .author {
+            text-align: center;
+            font-size: 1rem;
+            color: #a0a0a0;
+            opacity: 1.0;
+            transition: all 1.0s;
+        }
+    </style>
+</head>
+<body onload="window.setTimeout(OnTimeout, 4000)">
+    <section class="full-page x-center-y-center-column">
+        <div id="quote-block" class="quote"></div>
+        <div id="author-block" class="author"></div>
+    </section>
+    <script>
+        let CurrentQuoteIndex = 0;
+        const Quotes = [
+            { Text: "Apparently there is nothing that cannot happen today.", Author: "Mark Twain" },
+            { Text: "The world's most famous and popular language is music.", Author: "Henri de Toulouse-Lautrec" },
+            { Text: "Life is like riding a bicycle.<br>To keep your balance you must <b>keep moving</b>.", Author: "Albert Einstein" },
+            { Text: "Life is like a box of chocolates.", Author: "Forrest Gump" },
+        ]
+        OnTimeout = () => {
+            let Quote = document.getElementById("quote-block");
+            let Author = document.getElementById("author-block");
+            Quote.innerHTML = Quotes[CurrentQuoteIndex].Text;
+            Author.innerHTML = Quotes[CurrentQuoteIndex].Author;
+            CurrentQuoteIndex = (CurrentQuoteIndex + 1) % Quotes.length;
+            window.setTimeout(OnTimeout, 4000);
+        }
+    </script>
+</body>
+</html>
